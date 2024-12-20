@@ -50,13 +50,13 @@ public class EnemySpawnerScript : MonoBehaviour
             int randomEnemy = Random.Range(0, enemieList.Length);
 
             // Rastgele bir X koordinatında düşman spawn pozisyonu oluştur
-            Vector2 spawnPos = new Vector2(Random.Range(-9.0f, 9.0f), sabitY);
+            Vector2 spawnPos = new Vector2(Random.Range(-9.0f, 38.5f), sabitY);
 
             // Seçilen düşmanı sahneye instantiate et
             Instantiate(enemieList[randomEnemy], spawnPos, Quaternion.identity);
 
             // Bir saniye bekle
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(2.5f);
 
             // Spawn sayacını bir artır
             spawnSayac++;
@@ -65,5 +65,10 @@ public class EnemySpawnerScript : MonoBehaviour
 
         isSpawning = false; // Spawn işlemi tamamlandı
         Debug.Log("Spawn işlemi tamamlandı.");
+        
+        /*
+         * Corountine optimize çalışmamaktadır projenin bu hali eski olduğu için
+         * optimize edilmedi. Farkındayım bu kullanımlar hiç optimize değil
+         */
     }
 }

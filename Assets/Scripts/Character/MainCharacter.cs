@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class MainCharacter : MonoBehaviour
 {
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] Transform bulletSpawnPoint;
+    [Range(0.1f, 1f)] [SerializeField] float bulletRate = 0.5f;
+    
     // Yatay hareket girdisi (sağa/sola gitmek)
     float horizontal;
 
@@ -123,10 +127,23 @@ public class MainCharacter : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
+        
+        if (Input.GetMouseButtonDown(0))
+        {
+            Shoot();
+        }
 
         // Karakterin yüzünü hareket yönüne göre döndür
         Flip();
     }
+
+
+
+    public void Shoot()
+    {
+        Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+    }
+    
 
     private void FixedUpdate()
     {
